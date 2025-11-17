@@ -1,10 +1,10 @@
 name: Junction
-version: '1.0-ALPHA-1'
+version: "1.0-ALPHA"
 main: com.muhdfdeen.junction.Junction
 description: Automatically assigns Bedrock Edition players to groups using Floodgate and LuckPerms
 author: muhdfdeen
 website: https://github.com/muhdfdeen/junction
-api-version: '1.21'
+api-version: "1.21"
 dependencies:
   server:
     floodgate:

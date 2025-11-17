@@ -21,9 +21,9 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Logger log = plugin.getPluginLogger();
-        
+
         log.debug("Player join event triggered: " + player.getName());
-        
+
         if (!plugin.getConfig().getBoolean("permissions.enabled")) {
             log.debug("Permissions disabled, skipping " + player.getName());
             return;
@@ -36,7 +36,7 @@ public class PlayerJoinListener implements Listener {
             log.debug("Skipping Java player: " + player.getName());
             return;
         }
-        
+
         log.debug("Processing Bedrock player: " + player.getName());
 
         PermissionProvider permissionProvider = plugin.getPermissionProvider();
@@ -45,7 +45,7 @@ public class PlayerJoinListener implements Listener {
             log.warn("Can't assign group to " + player.getName() + ", no permission provider available");
             return;
         }
-        
+
         log.debug("Permission provider: " + permissionProvider.getName());
 
         String groupName = plugin.getConfig().getString("permissions.group");
@@ -53,7 +53,7 @@ public class PlayerJoinListener implements Listener {
             log.error("Bedrock group name not configured, check your config file");
             return;
         }
-        
+
         log.debug("Attempting to add " + player.getName() + " to group: " + groupName);
 
         boolean success = permissionProvider.addPlayerToGroup(player, groupName);

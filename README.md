@@ -5,9 +5,9 @@ A lightweight Minecraft plugin that automatically assigns Bedrock Edition player
 ## Configuration
 
 ```yaml
-#    __    __  __    __   __    ______   ______   __    ______    __   __   
-#   /\ \  /\ \/\ \  /\ "-.\ \  /\  ___\ /\__  _\ /\ \  /\  __ \  /\ "-.\ \  
-#  _\_\ \ \ \ \_\ \ \ \ \-.  \ \ \ \____\/_/\ \/ \ \ \ \ \ \/\ \ \ \ \-.  \ 
+#    __    __  __    __   __    ______   ______   __    ______    __   __
+#   /\ \  /\ \/\ \  /\ "-.\ \  /\  ___\ /\__  _\ /\ \  /\  __ \  /\ "-.\ \
+#  _\_\ \ \ \ \_\ \ \ \ \-.  \ \ \ \____\/_/\ \/ \ \ \ \ \ \/\ \ \ \ \-.  \
 # /\_____\ \ \_____\ \ \_\\"\_\ \ \_____\  \ \_\  \ \_\ \ \_____\ \ \_\\"\_\
 # \/_____/  \/_____/  \/_/ \/_/  \/_____/   \/_/   \/_/  \/_____/  \/_/ \/_/
 
@@ -17,13 +17,9 @@ debug: false
 # Automatically assign players on Bedrock Edition to a specified group
 permissions:
   enabled: true
-  
-  # Which permission plugin to use
-  # Supported: "LuckPerms" or "Vault"
+  # Which permission plugin to use: "LuckPerms", "Vault"
   provider: "LuckPerms"
-  
-  # Group assignment for Bedrock Edition players
-  # Note: Group name must exist in your permission plugin!
+  # Group name must exist in your permission plugin!
   group: "bedrock"
 
 # Do not touch this!
