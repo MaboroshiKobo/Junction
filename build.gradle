@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.muhdfdeen'
-version = '1.0-ALPHA-1'
+version = '1.0-ALPHA'
 
 repositories {
     mavenCentral()
