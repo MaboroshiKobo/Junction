@@ -20,7 +20,7 @@ permissions:
   # Which permission plugin to use: "LuckPerms", "Vault"
   provider: "LuckPerms"
   # Group name must exist in your permission plugin!
-  group: "bedrock"
+  group: "geyser"
 
 # Do not touch this!
 config-version: 1
