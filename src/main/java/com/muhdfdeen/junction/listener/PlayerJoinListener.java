@@ -25,11 +25,6 @@ public class PlayerJoinListener implements Listener {
 
         log.debug("Player join event triggered: " + player.getName());
 
-        if (!plugin.getConfig().getBoolean("permissions.enabled")) {
-            log.debug("Permissions disabled, skipping " + player.getName());
-            return;
-        }
-
         boolean isBedrockPlayer = FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId());
         log.debug(player.getName() + " detected as " + (isBedrockPlayer ? "Bedrock" : "Java") + " Edition");
 
