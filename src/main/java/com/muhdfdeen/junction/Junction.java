@@ -1,5 +1,6 @@
 package com.muhdfdeen.junction;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,6 +32,7 @@ public final class Junction extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        Metrics metrics = new Metrics(this, 28238);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, event -> {
             JunctionCommand junctionCommand = new JunctionCommand(this);
