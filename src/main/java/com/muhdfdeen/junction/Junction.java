@@ -45,7 +45,7 @@ public final class Junction extends JavaPlugin {
             setupPermissionProvider();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Failed to load configuration: " + e.getMessage());
             return false;
         }
     }
