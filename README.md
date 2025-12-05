@@ -1,9 +1,8 @@
 # Junction
 
-A Minecraft plugin that automatically assigns Bedrock Edition players to a permission group using Floodgate. Supports LuckPerms and Vault.
+**Junction** is a streamlined solution for Geyser/Floodgate servers. It automatically detects Bedrock Edition players upon join and assigns them to a specific permission group.
 
-> [!NOTE]
-> Inspired by [BedrockPlayerManager](https://github.com/ofunny/BedrockPlayerManager). Junction is a modernized alternative, created as an initiative to refine my Java development skills.
+This allows server admins to easily separate Java and Bedrock permissions (e.g., giving Bedrock players access to specific commands, kits, or prefixes) without manual intervention.
 
 ## Features
 
