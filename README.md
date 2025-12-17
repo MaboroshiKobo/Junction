@@ -53,7 +53,7 @@ messages:
 ## Building
 
 ```bash
-./gradlew clean shadowJar
+./gradlew build
 ```
 
 The compiled JAR will be in `build/libs/`.
