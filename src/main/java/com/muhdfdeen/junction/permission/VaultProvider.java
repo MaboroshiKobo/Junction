@@ -65,6 +65,13 @@ public class VaultProvider implements PermissionProvider {
     }
 
     @Override
+    public boolean removePlayerFromGroup(Player player, String group) {
+        if (!isPlayerInGroup(player, group))
+            return true;
+        return permission.playerRemoveGroup(null, player, group);
+    }
+
+    @Override
     public String getName() {
         return "Vault";
     }
