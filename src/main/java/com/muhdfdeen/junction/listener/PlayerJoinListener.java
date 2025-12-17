@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.geysermc.floodgate.api.FloodgateApi;
 
 import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.Config.MainConfiguration; 
+import com.muhdfdeen.junction.config.Config.MainConfiguration;
 import com.muhdfdeen.junction.permission.PermissionProvider;
 import com.muhdfdeen.junction.util.Logger;
 
@@ -26,19 +26,8 @@ public class PlayerJoinListener implements Listener {
 
         log.debug("Player join event triggered: " + player.getName());
 
-        var floodgatePlayer = FloodgateApi.getInstance().getPlayer(player.getUniqueId());
-
-        if (floodgatePlayer == null) {
-            log.debug("Skipping Java player: " + player.getName());
-            return;
-        }
-
-        log.debug("Processing Bedrock player: " + player.getName());
-        log.debug("UUID: " + player.getUniqueId());
-        log.debug("Device: " + floodgatePlayer.getDeviceOs());
-        log.debug("Input: " + floodgatePlayer.getInputMode());
-
         PermissionProvider permissionProvider = plugin.getPermissionProvider();
+        String groupName = config.permissions.group();
 
         if (permissionProvider == null) {
             log.warn("Can't assign group to " + player.getName() + ", no permission provider available.");
@@ -47,10 +36,19 @@ public class PlayerJoinListener implements Listener {
 
         log.debug("Permission provider: " + permissionProvider.getName());
 
-        String groupName = config.permissions.group();
-
         if (groupName == null || groupName.isEmpty()) {
             log.error("Bedrock group name not configured, check your config file.");
+            return;
+        }
+
+        var floodgatePlayer = FloodgateApi.getInstance().getPlayer(player.getUniqueId());
+
+        if (floodgatePlayer == null) {
+            log.debug("Cleaning Java player: " + player.getName());
+            if (permissionProvider.isPlayerInGroup(player, groupName)) {
+                permissionProvider.removePlayerFromGroup(player, groupName);
+                log.debug("Removed leftover group '" + groupName + "' from Java player " + player.getName());
+            }
             return;
         }
 
@@ -58,6 +56,11 @@ public class PlayerJoinListener implements Listener {
             log.debug(player.getName() + " already in group: " + groupName + " - skipping...");
             return;
         }
+
+        log.debug("Processing Bedrock player: " + player.getName());
+        log.debug("UUID: " + player.getUniqueId());
+        log.debug("Device: " + floodgatePlayer.getDeviceOs());
+        log.debug("Input: " + floodgatePlayer.getInputMode());
 
         log.debug("Attempting to add " + player.getName() + " to group: " + groupName);
 

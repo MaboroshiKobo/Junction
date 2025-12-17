@@ -7,5 +7,7 @@ public interface PermissionProvider {
 
     boolean isPlayerInGroup(Player player, String group);
 
+    boolean removePlayerFromGroup(Player player, String group);
+
     String getName();
 }

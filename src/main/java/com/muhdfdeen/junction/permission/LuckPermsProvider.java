@@ -59,6 +59,19 @@ public class LuckPermsProvider implements PermissionProvider {
     }
 
     @Override
+    public boolean removePlayerFromGroup(Player player, String group) {
+        if (!isPlayerInGroup(player, group))
+            return true;
+
+        this.luckPerms.getUserManager().modifyUser(player.getUniqueId(), user -> {
+            Node node = Node.builder("group." + group).build();
+            user.data().remove(node);
+        });
+
+        return true;
+    }
+
+    @Override
     public String getName() {
         return "LuckPerms";
     }
