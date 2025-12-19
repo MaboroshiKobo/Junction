@@ -8,6 +8,7 @@ import org.bstats.bukkit.Metrics;
 import com.muhdfdeen.junction.command.JunctionCommand;
 import com.muhdfdeen.junction.config.ConfigManager;
 import com.muhdfdeen.junction.listener.PlayerJoinListener;
+import com.muhdfdeen.junction.listener.PlayerQuitListener;
 import com.muhdfdeen.junction.permission.PermissionProvider;
 import com.muhdfdeen.junction.permission.ProviderManager;
 import com.muhdfdeen.junction.util.Logger;
@@ -33,6 +34,7 @@ public final class Junction extends JavaPlugin {
         @SuppressWarnings("unused")
         Metrics metrics = new Metrics(this, 28238);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(updateChecker, this);
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, event -> {
             JunctionCommand junctionCommand = new JunctionCommand(this);

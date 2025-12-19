@@ -37,11 +37,10 @@ public class PlayerQuitListener implements Listener {
     private void handleCommands(Player player, boolean isBedrock, ConfigManager config, Logger log) {
         List<String> commands;
 
-        if (isBedrock) {
-            commands = config.getMainConfig().commands.bedrock().join();
-        } else {
-            commands = config.getMainConfig().commands.java().join();
-        }
+        if (isBedrock)
+            commands = config.getMainConfig().commands.bedrock().quit();
+        else
+            commands = config.getMainConfig().commands.java().quit();
 
         CommandUtils.dispatch(player, commands);
     }
