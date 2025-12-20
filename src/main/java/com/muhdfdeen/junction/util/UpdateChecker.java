@@ -19,19 +19,22 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class UpdateChecker implements Listener {
     private final Junction plugin;
+    private final ConfigManager config;
+    private final Logger log;
     private boolean updateAvailable = false;
     private String latestVersion = "";
 
     public UpdateChecker(Junction plugin) {
         this.plugin = plugin;
+        this.config = plugin.getConfiguration();
+        this.log = plugin.getPluginLogger();
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        ConfigManager config = plugin.getConfiguration();
         Player player = event.getPlayer();
         if (updateAvailable && player.hasPermission("junction.admin")) {
-            plugin.getPluginLogger().debug("Notifying " + player.getName() + " about available update.");
+            log.debug("Notifying " + player.getName() + " about available update.");
             player.sendRichMessage(config.getMessageConfig().messages.prefix() + config.getMessageConfig().messages.updateAvailable()
                     .replace("{current_version}", plugin.getPluginMeta().getVersion())
                     .replace("{latest_version}", latestVersion));
@@ -63,7 +66,7 @@ public class UpdateChecker implements Listener {
                 }
             }
         }).exceptionally(exception -> {
-            plugin.getPluginLogger().warn("Update check failed: " + exception.getMessage());
+            log.warn("Update check failed: " + exception.getMessage());
             return null;
         });
     }
