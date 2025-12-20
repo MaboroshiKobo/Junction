@@ -49,7 +49,12 @@ public final class MainConfig {
         public boolean debug = false;
         @Comment("This module automatically assigns Bedrock Edition players to a specific group.")
         public PermissionSettings permissions = new PermissionSettings(false, "LuckPerms", "geyser");
-        @Comment("This module automatically executes commands based on Minecraft editions.")
+        
+        @Comment({
+            "This module automatically executes commands based on Minecraft editions.",
+            "Available internal placeholders: {player}, {uuid}",
+            "PlaceholderAPI support is enabled if installed."
+        })
         public CommandSettings commands = new CommandSettings(
             false,
             new EventCommands(
