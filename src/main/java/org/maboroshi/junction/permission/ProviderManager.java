@@ -10,19 +10,17 @@ public class ProviderManager {
         ConfigManager config = plugin.getConfiguration();
         PermissionProvider provider = null;
 
-        if (!config.getMainConfig().permissions.enabled()) {
+        if (!config.getMainConfig().permissions.enabled) {
             log.info("Permission management disabled.");
             return null;
         }
 
-        String providerType = config.getMainConfig().permissions.provider();
+        String providerType = config.getMainConfig().permissions.provider;
 
         if (providerType.equalsIgnoreCase("LuckPerms")) {
-            provider = LuckPermsProvider.setupProvider(
-                    plugin, config.getMainConfig().permissions.group());
+            provider = LuckPermsProvider.setupProvider(plugin, config.getMainConfig().permissions.group);
         } else if (providerType.equalsIgnoreCase("Vault")) {
-            provider = VaultProvider.setupProvider(
-                    plugin, config.getMainConfig().permissions.group());
+            provider = VaultProvider.setupProvider(plugin, config.getMainConfig().permissions.group);
         } else {
             log.warn("Unknown permission provider in config: " + providerType);
             return null;

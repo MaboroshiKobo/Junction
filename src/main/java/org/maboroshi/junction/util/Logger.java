@@ -16,7 +16,7 @@ public class Logger {
         ConfigManager config = plugin.getConfiguration();
         Bukkit.getConsoleSender()
                 .sendMessage(MiniMessage.miniMessage()
-                        .deserialize(config.getMessageConfig().messages.prefix() + colorTag + message));
+                        .deserialize(config.getMessageConfig().messages.prefix + colorTag + message));
     }
 
     public void debug(String message) {

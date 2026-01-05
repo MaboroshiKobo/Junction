@@ -31,7 +31,7 @@ public class PlayerJoinListener implements Listener {
         log.debug("Player join event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
 
         if (permissionProvider != null) {
-            String groupName = config.getMainConfig().permissions.group();
+            String groupName = config.getMainConfig().permissions.group;
             if (isBedrock) {
                 if (!permissionProvider.isPlayerInGroup(player, groupName)) {
                     log.debug("Attempting to add " + player.getName() + " to group: " + groupName);
@@ -47,14 +47,14 @@ public class PlayerJoinListener implements Listener {
             }
         }
 
-        if (config.getMainConfig().commands.enabled()) handleCommands(player, isBedrock, config, log);
+        if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, log);
     }
 
     private void handleCommands(Player player, boolean isBedrock, ConfigManager config, Logger log) {
         List<String> commands;
 
-        if (isBedrock) commands = config.getMainConfig().commands.bedrock().join();
-        else commands = config.getMainConfig().commands.java().join();
+        if (isBedrock) commands = config.getMainConfig().commands.bedrock.join;
+        else commands = config.getMainConfig().commands.java.join;
 
         CommandUtils.dispatch(player, commands);
     }

@@ -23,7 +23,7 @@ public class JunctionCommand {
         return Commands.literal(commandName)
                 .executes(ctx -> {
                     CommandSender sender = ctx.getSource().getSender();
-                    sender.sendRichMessage(config.getMessageConfig().messages.prefix() + "Plugin version: "
+                    sender.sendRichMessage(config.getMessageConfig().messages.prefix + "Plugin version: "
                             + plugin.getPluginMeta().getVersion());
                     sender.sendRichMessage(
                             "<green>🛈</green> <gray>Type <white>/junction reload</white> to reload the configuration.</gray>");
@@ -35,16 +35,12 @@ public class JunctionCommand {
                             CommandSender sender = ctx.getSource().getSender();
                             if (plugin.reload()) {
                                 log.info("Configuration reloaded by " + sender.getName());
-                                sender.sendRichMessage(config.getMessageConfig()
-                                                .messages
-                                                .prefix()
-                                        + config.getMessageConfig().messages.reloadSuccess());
+                                sender.sendRichMessage(config.getMessageConfig().messages.prefix
+                                        + config.getMessageConfig().messages.reloadSuccess);
                             } else {
                                 log.warn("Failed to reload configuration by " + sender.getName());
-                                sender.sendRichMessage(config.getMessageConfig()
-                                                .messages
-                                                .prefix()
-                                        + config.getMessageConfig().messages.reloadFail());
+                                sender.sendRichMessage(config.getMessageConfig().messages.prefix
+                                        + config.getMessageConfig().messages.reloadFail);
                             }
                             return Command.SINGLE_SUCCESS;
                         }))

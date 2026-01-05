@@ -14,31 +14,31 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.handler.MessageHandler;
 
 public class UpdateChecker implements Listener {
     private final Junction plugin;
     private final ConfigManager config;
-    private final Logger log;
+    private final MessageHandler messageHandler;
     private boolean updateAvailable = false;
     private String latestVersion = "";
 
     public UpdateChecker(Junction plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfiguration();
-        this.log = plugin.getPluginLogger();
+        this.messageHandler = plugin.getMessageHandler();
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (updateAvailable && player.hasPermission("junction.admin")) {
-            log.debug("Notifying " + player.getName() + " about available update.");
-            player.sendRichMessage(config.getMessageConfig().messages.prefix()
-                    + config.getMessageConfig()
-                            .messages
-                            .updateAvailable()
-                            .replace("{current_version}", plugin.getPluginMeta().getVersion())
-                            .replace("{latest_version}", latestVersion));
+            plugin.getPluginLogger().debug("Notifying " + player.getName() + " about available update.");
+            messageHandler.send(
+                    player,
+                    config.getMessageConfig().messages.updateAvailable,
+                    messageHandler.tag("current-version", plugin.getPluginMeta().getVersion()),
+                    messageHandler.tag("latest-version", latestVersion));
         }
     }
 
@@ -47,7 +47,7 @@ public class UpdateChecker implements Listener {
                     try {
                         HttpClient client = HttpClient.newHttpClient();
                         HttpRequest request = HttpRequest.newBuilder()
-                                .uri(URI.create("https://api.github.com/repos/muhdfdeen/junction/releases/latest"))
+                                .uri(URI.create("https://api.github.com/repos/MaboroshiKobo/Junction/releases/latest"))
                                 .build();
                         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
                         if (response.statusCode() != 200) {
@@ -69,7 +69,7 @@ public class UpdateChecker implements Listener {
                     }
                 })
                 .exceptionally(exception -> {
-                    log.warn("Update check failed: " + exception.getMessage());
+                    plugin.getPluginLogger().warn("Update check failed: " + exception.getMessage());
                     return null;
                 });
     }

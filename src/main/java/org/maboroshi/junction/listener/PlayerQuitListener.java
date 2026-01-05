@@ -28,14 +28,14 @@ public class PlayerQuitListener implements Listener {
 
         log.debug("Player quit event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
 
-        if (config.getMainConfig().commands.enabled()) handleCommands(player, isBedrock, config, log);
+        if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, log);
     }
 
     private void handleCommands(Player player, boolean isBedrock, ConfigManager config, Logger log) {
         List<String> commands;
 
-        if (isBedrock) commands = config.getMainConfig().commands.bedrock().quit();
-        else commands = config.getMainConfig().commands.java().quit();
+        if (isBedrock) commands = config.getMainConfig().commands.bedrock.quit;
+        else commands = config.getMainConfig().commands.java.quit;
 
         CommandUtils.dispatch(player, commands);
     }
