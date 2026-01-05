@@ -1,12 +1,11 @@
 package org.maboroshi.junction.permission;
 
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.node.Node;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.util.Logger;
-
-import net.luckperms.api.LuckPerms;
-import net.luckperms.api.node.Node;
 
 public class LuckPermsProvider implements PermissionProvider {
     private final LuckPerms luckPerms;
@@ -21,8 +20,8 @@ public class LuckPermsProvider implements PermissionProvider {
             log.warn("LuckPerms plugin not found!");
             return null;
         }
-        RegisteredServiceProvider<LuckPerms> provider = plugin.getServer().getServicesManager()
-                .getRegistration(LuckPerms.class);
+        RegisteredServiceProvider<LuckPerms> provider =
+                plugin.getServer().getServicesManager().getRegistration(LuckPerms.class);
         if (provider == null) {
             log.warn("LuckPerms registration failed!");
             return null;
@@ -41,8 +40,7 @@ public class LuckPermsProvider implements PermissionProvider {
 
     @Override
     public boolean addPlayerToGroup(Player player, String group) {
-        if (isPlayerInGroup(player, group))
-            return true;
+        if (isPlayerInGroup(player, group)) return true;
 
         this.luckPerms.getUserManager().modifyUser(player.getUniqueId(), user -> {
             Node node = Node.builder("group." + group).build();
@@ -59,8 +57,7 @@ public class LuckPermsProvider implements PermissionProvider {
 
     @Override
     public boolean removePlayerFromGroup(Player player, String group) {
-        if (!isPlayerInGroup(player, group))
-            return true;
+        if (!isPlayerInGroup(player, group)) return true;
 
         this.luckPerms.getUserManager().modifyUser(player.getUniqueId(), user -> {
             Node node = Node.builder("group." + group).build();

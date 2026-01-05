@@ -18,9 +18,11 @@ public class ProviderManager {
         String providerType = config.getMainConfig().permissions.provider();
 
         if (providerType.equalsIgnoreCase("LuckPerms")) {
-            provider = LuckPermsProvider.setupProvider(plugin, config.getMainConfig().permissions.group());
+            provider = LuckPermsProvider.setupProvider(
+                    plugin, config.getMainConfig().permissions.group());
         } else if (providerType.equalsIgnoreCase("Vault")) {
-            provider = VaultProvider.setupProvider(plugin, config.getMainConfig().permissions.group());
+            provider = VaultProvider.setupProvider(
+                    plugin, config.getMainConfig().permissions.group());
         } else {
             log.warn("Unknown permission provider in config: " + providerType);
             return null;

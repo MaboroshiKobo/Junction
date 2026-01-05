@@ -1,12 +1,11 @@
 package org.maboroshi.junction.util;
 
-import org.eclipse.aether.artifact.DefaultArtifact;
-import org.eclipse.aether.graph.Dependency;
-import org.eclipse.aether.repository.RemoteRepository;
-
 import io.papermc.paper.plugin.loader.PluginClasspathBuilder;
 import io.papermc.paper.plugin.loader.PluginLoader;
 import io.papermc.paper.plugin.loader.library.impl.MavenLibraryResolver;
+import org.eclipse.aether.artifact.DefaultArtifact;
+import org.eclipse.aether.graph.Dependency;
+import org.eclipse.aether.repository.RemoteRepository;
 
 public class Loader implements PluginLoader {
     @Override
@@ -15,7 +14,9 @@ public class Loader implements PluginLoader {
 
         resolver.addDependency(new Dependency(new DefaultArtifact("de.exlll:configlib-paper:4.8.0"), null));
 
-        resolver.addRepository(new RemoteRepository.Builder("paper", "default", "https://repo.papermc.io/repository/maven-public/").build());
+        resolver.addRepository(
+                new RemoteRepository.Builder("paper", "default", "https://repo.papermc.io/repository/maven-public/")
+                        .build());
 
         classpathBuilder.addLibrary(resolver);
     }

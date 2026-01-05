@@ -1,7 +1,6 @@
 package org.maboroshi.junction.listener;
 
 import java.util.List;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,10 +36,8 @@ public class PlayerJoinListener implements Listener {
                 if (!permissionProvider.isPlayerInGroup(player, groupName)) {
                     log.debug("Attempting to add " + player.getName() + " to group: " + groupName);
                     boolean success = permissionProvider.addPlayerToGroup(player, groupName);
-                    if (success)
-                        log.info("Added Bedrock player " + player.getName() + " to group '" + groupName + "'");
-                    else
-                        log.warn("Failed to add " + player.getName() + " to group '" + groupName + "'");
+                    if (success) log.info("Added Bedrock player " + player.getName() + " to group '" + groupName + "'");
+                    else log.warn("Failed to add " + player.getName() + " to group '" + groupName + "'");
                 }
             } else {
                 if (permissionProvider.isPlayerInGroup(player, groupName)) {
@@ -50,17 +47,14 @@ public class PlayerJoinListener implements Listener {
             }
         }
 
-        if (config.getMainConfig().commands.enabled())
-            handleCommands(player, isBedrock, config, log);
+        if (config.getMainConfig().commands.enabled()) handleCommands(player, isBedrock, config, log);
     }
 
     private void handleCommands(Player player, boolean isBedrock, ConfigManager config, Logger log) {
         List<String> commands;
 
-        if (isBedrock)
-            commands = config.getMainConfig().commands.bedrock().join();
-        else
-            commands = config.getMainConfig().commands.java().join();
+        if (isBedrock) commands = config.getMainConfig().commands.bedrock().join();
+        else commands = config.getMainConfig().commands.java().join();
 
         CommandUtils.dispatch(player, commands);
     }

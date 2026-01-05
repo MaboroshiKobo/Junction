@@ -1,5 +1,7 @@
 package org.maboroshi.junction;
 
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.maboroshi.junction.command.JunctionCommand;
 import org.maboroshi.junction.config.ConfigManager;
@@ -9,10 +11,6 @@ import org.maboroshi.junction.permission.PermissionProvider;
 import org.maboroshi.junction.permission.ProviderManager;
 import org.maboroshi.junction.util.Logger;
 import org.maboroshi.junction.util.UpdateChecker;
-
-import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
-
-import org.bstats.bukkit.Metrics;
 
 public final class Junction extends JavaPlugin {
     private static Junction plugin;

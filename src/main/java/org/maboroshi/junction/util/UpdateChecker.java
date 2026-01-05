@@ -1,15 +1,13 @@
 package org.maboroshi.junction.util;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.concurrent.CompletableFuture;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,40 +33,45 @@ public class UpdateChecker implements Listener {
         Player player = event.getPlayer();
         if (updateAvailable && player.hasPermission("junction.admin")) {
             log.debug("Notifying " + player.getName() + " about available update.");
-            player.sendRichMessage(config.getMessageConfig().messages.prefix() + config.getMessageConfig().messages.updateAvailable()
-                    .replace("{current_version}", plugin.getPluginMeta().getVersion())
-                    .replace("{latest_version}", latestVersion));
+            player.sendRichMessage(config.getMessageConfig().messages.prefix()
+                    + config.getMessageConfig()
+                            .messages
+                            .updateAvailable()
+                            .replace("{current_version}", plugin.getPluginMeta().getVersion())
+                            .replace("{latest_version}", latestVersion));
         }
     }
 
     public void checkForUpdates() {
         CompletableFuture.supplyAsync(() -> {
-            try {
-                HttpClient client = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("https://api.github.com/repos/muhdfdeen/junction/releases/latest"))
-                        .build();
-                HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-                if (response.statusCode() != 200) {
-                    throw new RuntimeException("GitHub returned code " + response.statusCode());
-                }
-                return response.body();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }).thenAccept(jsonResponse -> {
-            JsonObject json = JsonParser.parseString(jsonResponse).getAsJsonObject();
-            if (json.has("tag_name")) {
-                String tagName = json.get("tag_name").getAsString().replace("v", "");
-                if (isNewer(plugin.getPluginMeta().getVersion(), tagName)) {
-                    this.updateAvailable = true;
-                    this.latestVersion = tagName;
-                }
-            }
-        }).exceptionally(exception -> {
-            log.warn("Update check failed: " + exception.getMessage());
-            return null;
-        });
+                    try {
+                        HttpClient client = HttpClient.newHttpClient();
+                        HttpRequest request = HttpRequest.newBuilder()
+                                .uri(URI.create("https://api.github.com/repos/muhdfdeen/junction/releases/latest"))
+                                .build();
+                        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+                        if (response.statusCode() != 200) {
+                            throw new RuntimeException("GitHub returned code " + response.statusCode());
+                        }
+                        return response.body();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .thenAccept(jsonResponse -> {
+                    JsonObject json = JsonParser.parseString(jsonResponse).getAsJsonObject();
+                    if (json.has("tag_name")) {
+                        String tagName = json.get("tag_name").getAsString().replace("v", "");
+                        if (isNewer(plugin.getPluginMeta().getVersion(), tagName)) {
+                            this.updateAvailable = true;
+                            this.latestVersion = tagName;
+                        }
+                    }
+                })
+                .exceptionally(exception -> {
+                    log.warn("Update check failed: " + exception.getMessage());
+                    return null;
+                });
     }
 
     private boolean isNewer(String current, String remote) {

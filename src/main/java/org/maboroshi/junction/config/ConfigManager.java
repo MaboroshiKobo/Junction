@@ -1,7 +1,6 @@
 package org.maboroshi.junction.config;
 
 import java.io.File;
-
 import org.maboroshi.junction.config.MainConfig.MainConfiguration;
 import org.maboroshi.junction.config.MessageConfig.MessageConfiguration;
 

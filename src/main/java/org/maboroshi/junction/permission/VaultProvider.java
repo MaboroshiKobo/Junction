@@ -1,11 +1,10 @@
 package org.maboroshi.junction.permission;
 
+import net.milkbowl.vault2.permission.Permission;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.util.Logger;
-
-import net.milkbowl.vault2.permission.Permission;
 
 public class VaultProvider implements PermissionProvider {
     private final Permission permission;
@@ -22,8 +21,8 @@ public class VaultProvider implements PermissionProvider {
             return null;
         }
 
-        RegisteredServiceProvider<Permission> provider = plugin.getServer().getServicesManager()
-                .getRegistration(Permission.class);
+        RegisteredServiceProvider<Permission> provider =
+                plugin.getServer().getServicesManager().getRegistration(Permission.class);
         if (provider == null) {
             log.warn("Vault registration failed!");
             return null;
@@ -53,8 +52,7 @@ public class VaultProvider implements PermissionProvider {
 
     @Override
     public boolean addPlayerToGroup(Player player, String group) {
-        if (isPlayerInGroup(player, group))
-            return true;
+        if (isPlayerInGroup(player, group)) return true;
         return permission.playerAddGroup(null, player, group);
     }
 
@@ -65,8 +63,7 @@ public class VaultProvider implements PermissionProvider {
 
     @Override
     public boolean removePlayerFromGroup(Player player, String group) {
-        if (!isPlayerInGroup(player, group))
-            return true;
+        if (!isPlayerInGroup(player, group)) return true;
         return permission.playerRemoveGroup(null, player, group);
     }
 
