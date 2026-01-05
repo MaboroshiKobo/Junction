@@ -1,24 +1,24 @@
-package com.muhdfdeen.junction;
+package org.maboroshi.junction;
 
-import org.bukkit.plugin.java.JavaPlugin;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
-
 import org.bstats.bukkit.Metrics;
-
-import com.muhdfdeen.junction.command.JunctionCommand;
-import com.muhdfdeen.junction.config.ConfigManager;
-import com.muhdfdeen.junction.listener.PlayerJoinListener;
-import com.muhdfdeen.junction.listener.PlayerQuitListener;
-import com.muhdfdeen.junction.permission.PermissionProvider;
-import com.muhdfdeen.junction.permission.ProviderManager;
-import com.muhdfdeen.junction.util.Logger;
-import com.muhdfdeen.junction.util.UpdateChecker;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.maboroshi.junction.command.JunctionCommand;
+import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.listener.PlayerJoinListener;
+import org.maboroshi.junction.listener.PlayerQuitListener;
+import org.maboroshi.junction.permission.PermissionProvider;
+import org.maboroshi.junction.permission.ProviderManager;
+import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.MessageUtils;
+import org.maboroshi.junction.util.UpdateChecker;
 
 public final class Junction extends JavaPlugin {
     private static Junction plugin;
     private ConfigManager config;
     private PermissionProvider permissionProvider;
     private Logger log;
+    private MessageUtils messageUtils;
 
     @Override
     public void onEnable() {
@@ -47,6 +47,7 @@ public final class Junction extends JavaPlugin {
         try {
             this.config = new ConfigManager(getDataFolder());
             this.config.load();
+            this.messageUtils = new MessageUtils(this.config);
             this.permissionProvider = ProviderManager.initializeProvider(this);
             return true;
         } catch (Exception e) {
@@ -65,6 +66,10 @@ public final class Junction extends JavaPlugin {
 
     public ConfigManager getConfiguration() {
         return config;
+    }
+
+    public MessageUtils getMessageUtils() {
+        return messageUtils;
     }
 
     public PermissionProvider getPermissionProvider() {

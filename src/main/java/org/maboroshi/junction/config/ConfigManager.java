@@ -1,8 +1,10 @@
-package com.muhdfdeen.junction.config;
+package org.maboroshi.junction.config;
 
 import java.io.File;
-import com.muhdfdeen.junction.config.MainConfig.MainConfiguration;
-import com.muhdfdeen.junction.config.MessageConfig.MessageConfiguration;
+import org.maboroshi.junction.config.settings.MainConfig;
+import org.maboroshi.junction.config.settings.MainConfig.MainConfiguration;
+import org.maboroshi.junction.config.settings.MessageConfig;
+import org.maboroshi.junction.config.settings.MessageConfig.MessageConfiguration;
 
 public class ConfigManager {
     private final File dataFolder;

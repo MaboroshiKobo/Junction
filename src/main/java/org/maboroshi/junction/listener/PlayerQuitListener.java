@@ -1,17 +1,15 @@
-package com.muhdfdeen.junction.listener;
+package org.maboroshi.junction.listener;
 
 import java.util.List;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.geysermc.floodgate.api.FloodgateApi;
-
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.ConfigManager;
-import com.muhdfdeen.junction.util.CommandUtils;
-import com.muhdfdeen.junction.util.Logger;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.util.CommandUtils;
+import org.maboroshi.junction.util.Logger;
 
 public class PlayerQuitListener implements Listener {
     private final Junction plugin;
@@ -30,17 +28,14 @@ public class PlayerQuitListener implements Listener {
 
         log.debug("Player quit event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
 
-        if (config.getMainConfig().commands.enabled())
-            handleCommands(player, isBedrock, config, log);
+        if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, log);
     }
 
     private void handleCommands(Player player, boolean isBedrock, ConfigManager config, Logger log) {
         List<String> commands;
 
-        if (isBedrock)
-            commands = config.getMainConfig().commands.bedrock().quit();
-        else
-            commands = config.getMainConfig().commands.java().quit();
+        if (isBedrock) commands = config.getMainConfig().commands.bedrock.quit;
+        else commands = config.getMainConfig().commands.java.quit;
 
         CommandUtils.dispatch(player, commands);
     }

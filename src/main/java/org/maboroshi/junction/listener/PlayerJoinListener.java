@@ -1,18 +1,16 @@
-package com.muhdfdeen.junction.listener;
+package org.maboroshi.junction.listener;
 
 import java.util.List;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.geysermc.floodgate.api.FloodgateApi;
-
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.ConfigManager;
-import com.muhdfdeen.junction.permission.PermissionProvider;
-import com.muhdfdeen.junction.util.CommandUtils;
-import com.muhdfdeen.junction.util.Logger;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.permission.PermissionProvider;
+import org.maboroshi.junction.util.CommandUtils;
+import org.maboroshi.junction.util.Logger;
 
 public class PlayerJoinListener implements Listener {
     private final Junction plugin;
@@ -33,15 +31,13 @@ public class PlayerJoinListener implements Listener {
         log.debug("Player join event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
 
         if (permissionProvider != null) {
-            String groupName = config.getMainConfig().permissions.group();
+            String groupName = config.getMainConfig().permissions.group;
             if (isBedrock) {
                 if (!permissionProvider.isPlayerInGroup(player, groupName)) {
                     log.debug("Attempting to add " + player.getName() + " to group: " + groupName);
                     boolean success = permissionProvider.addPlayerToGroup(player, groupName);
-                    if (success)
-                        log.info("Added Bedrock player " + player.getName() + " to group '" + groupName + "'");
-                    else
-                        log.warn("Failed to add " + player.getName() + " to group '" + groupName + "'");
+                    if (success) log.info("Added Bedrock player " + player.getName() + " to group '" + groupName + "'");
+                    else log.warn("Failed to add " + player.getName() + " to group '" + groupName + "'");
                 }
             } else {
                 if (permissionProvider.isPlayerInGroup(player, groupName)) {
@@ -51,17 +47,14 @@ public class PlayerJoinListener implements Listener {
             }
         }
 
-        if (config.getMainConfig().commands.enabled())
-            handleCommands(player, isBedrock, config, log);
+        if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, log);
     }
 
     private void handleCommands(Player player, boolean isBedrock, ConfigManager config, Logger log) {
         List<String> commands;
 
-        if (isBedrock)
-            commands = config.getMainConfig().commands.bedrock().join();
-        else
-            commands = config.getMainConfig().commands.java().join();
+        if (isBedrock) commands = config.getMainConfig().commands.bedrock.join;
+        else commands = config.getMainConfig().commands.java.join;
 
         CommandUtils.dispatch(player, commands);
     }
