@@ -47,6 +47,7 @@ public final class Junction extends JavaPlugin {
         try {
             this.config = new ConfigManager(getDataFolder());
             this.config.load();
+            this.messageHandler = new MessageHandler(this.config);
             this.permissionProvider = ProviderManager.initializeProvider(this);
             return true;
         } catch (Exception e) {

@@ -6,24 +6,21 @@ import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.config.ConfigManager;
 
 public class Logger {
-    private final Junction plugin;
+    private final ConfigManager config;
 
     public Logger(Junction plugin) {
-        this.plugin = plugin;
+        this.config = plugin.getConfiguration();
     }
 
     private void log(String colorTag, String message) {
-        ConfigManager config = plugin.getConfiguration();
-        Bukkit.getConsoleSender()
-                .sendMessage(MiniMessage.miniMessage()
-                        .deserialize(config.getMessageConfig().messages.prefix + colorTag + message));
+        String prefix;
+        if (config != null && config.getMessageConfig() != null) prefix = config.getMessageConfig().messages.prefix;
+        else prefix = "<color:#00D4FF><bold>Junction</bold> ➟ </color>";
+        Bukkit.getConsoleSender().sendMessage(MiniMessage.miniMessage().deserialize(prefix + colorTag + message));
     }
 
     public void debug(String message) {
-        ConfigManager config = plugin.getConfiguration();
-        if (config != null && config.getMainConfig().debug) {
-            log("<gray>[DEBUG] </gray>", message);
-        }
+        if (config != null && config.getMainConfig().debug) log("<gray>[DEBUG] </gray>", message);
     }
 
     public void info(String message) {
