@@ -1,4 +1,4 @@
-package com.muhdfdeen.junction.permission;
+package org.maboroshi.junction.permission;
 
 import org.bukkit.entity.Player;
 

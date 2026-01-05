@@ -1,18 +1,18 @@
-package com.muhdfdeen.junction;
+package org.maboroshi.junction;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.maboroshi.junction.command.JunctionCommand;
+import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.listener.PlayerJoinListener;
+import org.maboroshi.junction.listener.PlayerQuitListener;
+import org.maboroshi.junction.permission.PermissionProvider;
+import org.maboroshi.junction.permission.ProviderManager;
+import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.UpdateChecker;
+
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 
 import org.bstats.bukkit.Metrics;
-
-import com.muhdfdeen.junction.command.JunctionCommand;
-import com.muhdfdeen.junction.config.ConfigManager;
-import com.muhdfdeen.junction.listener.PlayerJoinListener;
-import com.muhdfdeen.junction.listener.PlayerQuitListener;
-import com.muhdfdeen.junction.permission.PermissionProvider;
-import com.muhdfdeen.junction.permission.ProviderManager;
-import com.muhdfdeen.junction.util.Logger;
-import com.muhdfdeen.junction.util.UpdateChecker;
 
 public final class Junction extends JavaPlugin {
     private static Junction plugin;

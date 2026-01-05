@@ -1,4 +1,4 @@
-package com.muhdfdeen.junction.config;
+package org.maboroshi.junction.config;
 
 import java.io.File;
 import java.nio.file.Path;

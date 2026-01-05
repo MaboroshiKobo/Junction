@@ -1,16 +1,15 @@
-package com.muhdfdeen.junction.command;
+package org.maboroshi.junction.command;
 
 import org.bukkit.command.CommandSender;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.util.Logger;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
-
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.ConfigManager;
-import com.muhdfdeen.junction.util.Logger;
 
 public class JunctionCommand {
     private final Junction plugin;

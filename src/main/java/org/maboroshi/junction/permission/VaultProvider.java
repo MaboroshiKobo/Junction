@@ -1,12 +1,11 @@
-package com.muhdfdeen.junction.permission;
+package org.maboroshi.junction.permission;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.util.Logger;
 
 import net.milkbowl.vault2.permission.Permission;
-
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.util.Logger;
 
 public class VaultProvider implements PermissionProvider {
     private final Permission permission;

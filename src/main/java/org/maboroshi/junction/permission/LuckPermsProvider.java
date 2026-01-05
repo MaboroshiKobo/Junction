@@ -1,13 +1,12 @@
-package com.muhdfdeen.junction.permission;
+package org.maboroshi.junction.permission;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.util.Logger;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.node.Node;
-
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.util.Logger;
 
 public class LuckPermsProvider implements PermissionProvider {
     private final LuckPerms luckPerms;

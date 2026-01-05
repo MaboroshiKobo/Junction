@@ -1,4 +1,4 @@
-package com.muhdfdeen.junction.listener;
+package org.maboroshi.junction.listener;
 
 import java.util.List;
 
@@ -7,11 +7,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.geysermc.floodgate.api.FloodgateApi;
-
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.ConfigManager;
-import com.muhdfdeen.junction.util.CommandUtils;
-import com.muhdfdeen.junction.util.Logger;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.util.CommandUtils;
+import org.maboroshi.junction.util.Logger;
 
 public class PlayerQuitListener implements Listener {
     private final Junction plugin;

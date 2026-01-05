@@ -1,4 +1,4 @@
-package com.muhdfdeen.junction.util;
+package org.maboroshi.junction.util;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -9,13 +9,13 @@ import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.ConfigManager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.config.ConfigManager;
 
 public class UpdateChecker implements Listener {
     private final Junction plugin;

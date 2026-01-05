@@ -1,4 +1,4 @@
-package com.muhdfdeen.junction.util;
+package org.maboroshi.junction.util;
 
 import java.util.List;
 import org.bukkit.Bukkit;

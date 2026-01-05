@@ -1,10 +1,11 @@
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '9.3.0'
+    id 'com.diffplug.spotless' version '8.1.0'
 }
 
-group = 'com.muhdfdeen'
-version = '1.2.0'
+group = 'org.maboroshi'
+version = '1.3.0'
 
 repositories {
     mavenCentral()
@@ -25,7 +26,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
-    implementation("de.exlll:configlib-paper:4.6.4")
+    compileOnly("de.exlll:configlib-paper:4.8.0")
     implementation("org.bstats:bstats-bukkit:3.1.0")
     compileOnly("org.geysermc.floodgate:api:2.2.4-SNAPSHOT")
     compileOnly("net.milkbowl.vault:VaultUnlockedAPI:2.17")
@@ -34,8 +35,7 @@ dependencies {
 }
 
 tasks.named('shadowJar') {
-  relocate 'de.exlll.configlib', 'com.muhdfdeen.junction.libs.configlib'
-  relocate 'org.bstats', 'com.muhdfdeen.junction.libs.bstats'
+  relocate 'org.bstats', 'org.maboroshi.junction.libs.bstats'
   exclude 'plugin.yml'
   minimize()
   archiveClassifier.set('')
@@ -58,4 +58,24 @@ processResources {
     filesMatching('paper-plugin.yml') {
         expand props
     }
+}
+
+spotless {
+  ratchetFrom 'origin/main'
+
+  format 'misc', {
+    target '*.gradle', '.gitattributes', '.gitignore'
+    trimTrailingWhitespace()
+    leadingTabsToSpaces()
+    endWithNewline()
+  }
+
+  java {
+    target 'src/*/java/**/*.java'
+    palantirJavaFormat('2.83.0')
+    formatAnnotations()
+    importOrder()
+    removeUnusedImports()
+    cleanthat()
+  }
 }

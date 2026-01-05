@@ -1,8 +1,8 @@
-package com.muhdfdeen.junction.permission;
+package org.maboroshi.junction.permission;
 
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.ConfigManager;
-import com.muhdfdeen.junction.util.Logger;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.config.ConfigManager;
+import org.maboroshi.junction.util.Logger;
 
 public class ProviderManager {
     public static PermissionProvider initializeProvider(Junction plugin) {

@@ -1,9 +1,9 @@
-package com.muhdfdeen.junction.util;
+package org.maboroshi.junction.util;
 
-import com.muhdfdeen.junction.Junction;
-import com.muhdfdeen.junction.config.ConfigManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.maboroshi.junction.Junction;
+import org.maboroshi.junction.config.ConfigManager;
 
 public class Logger {
     private final Junction plugin;
