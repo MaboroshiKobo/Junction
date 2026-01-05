@@ -7,18 +7,18 @@ import io.papermc.paper.command.brigadier.Commands;
 import org.bukkit.command.CommandSender;
 import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.config.ConfigManager;
-import org.maboroshi.junction.handler.MessageHandler;
 import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.MessageUtils;
 
 public class JunctionCommand {
     private final Junction plugin;
     private final Logger log;
-    private final MessageHandler messageHandler;
+    private final MessageUtils messageUtils;
 
     public JunctionCommand(Junction plugin) {
         this.plugin = plugin;
         this.log = plugin.getPluginLogger();
-        this.messageHandler = plugin.getMessageHandler();
+        this.messageUtils = plugin.getMessageUtils();
     }
 
     public LiteralCommandNode<CommandSourceStack> createCommand(final String commandName) {
@@ -27,12 +27,12 @@ public class JunctionCommand {
                 .executes(ctx -> {
                     CommandSender sender = ctx.getSource().getSender();
 
-                    messageHandler.send(
+                    messageUtils.send(
                             sender,
                             "<prefix>Plugin version: <green><version></green>",
-                            messageHandler.tag("version", plugin.getPluginMeta().getVersion()));
+                            messageUtils.tag("version", plugin.getPluginMeta().getVersion()));
 
-                    messageHandler.send(
+                    messageUtils.send(
                             sender,
                             "<green>🛈</green> <gray>Type <white>/junction reload</white> to reload the configuration.</gray>");
                     return Command.SINGLE_SUCCESS;
@@ -43,11 +43,11 @@ public class JunctionCommand {
                             CommandSender sender = ctx.getSource().getSender();
                             if (plugin.reload()) {
                                 log.info("Configuration reloaded by " + sender.getName());
-                                messageHandler.send(
+                                messageUtils.send(
                                         sender, "<prefix>" + config.getMessageConfig().messages.reloadSuccess);
                             } else {
                                 log.warn("Failed to reload configuration by " + sender.getName());
-                                messageHandler.send(sender, "<prefix>" + config.getMessageConfig().messages.reloadFail);
+                                messageUtils.send(sender, "<prefix>" + config.getMessageConfig().messages.reloadFail);
                             }
                             return Command.SINGLE_SUCCESS;
                         }))

@@ -14,19 +14,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.config.ConfigManager;
-import org.maboroshi.junction.handler.MessageHandler;
 
 public class UpdateChecker implements Listener {
     private final Junction plugin;
     private final ConfigManager config;
-    private final MessageHandler messageHandler;
+    private final MessageUtils messageUtils;
     private boolean updateAvailable = false;
     private String latestVersion = "";
 
     public UpdateChecker(Junction plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfiguration();
-        this.messageHandler = plugin.getMessageHandler();
+        this.messageUtils = plugin.getMessageUtils();
     }
 
     @EventHandler
@@ -34,11 +33,11 @@ public class UpdateChecker implements Listener {
         Player player = event.getPlayer();
         if (updateAvailable && player.hasPermission("junction.admin")) {
             plugin.getPluginLogger().debug("Notifying " + player.getName() + " about available update.");
-            messageHandler.send(
+            messageUtils.send(
                     player,
                     config.getMessageConfig().messages.updateAvailable,
-                    messageHandler.tag("current-version", plugin.getPluginMeta().getVersion()),
-                    messageHandler.tag("latest-version", latestVersion));
+                    messageUtils.tag("current-version", plugin.getPluginMeta().getVersion()),
+                    messageUtils.tag("latest-version", latestVersion));
         }
     }
 

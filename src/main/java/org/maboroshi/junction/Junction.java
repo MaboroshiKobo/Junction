@@ -5,12 +5,12 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.maboroshi.junction.command.JunctionCommand;
 import org.maboroshi.junction.config.ConfigManager;
-import org.maboroshi.junction.handler.MessageHandler;
 import org.maboroshi.junction.listener.PlayerJoinListener;
 import org.maboroshi.junction.listener.PlayerQuitListener;
 import org.maboroshi.junction.permission.PermissionProvider;
 import org.maboroshi.junction.permission.ProviderManager;
 import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.MessageUtils;
 import org.maboroshi.junction.util.UpdateChecker;
 
 public final class Junction extends JavaPlugin {
@@ -18,7 +18,7 @@ public final class Junction extends JavaPlugin {
     private ConfigManager config;
     private PermissionProvider permissionProvider;
     private Logger log;
-    private MessageHandler messageHandler;
+    private MessageUtils messageUtils;
 
     @Override
     public void onEnable() {
@@ -47,7 +47,7 @@ public final class Junction extends JavaPlugin {
         try {
             this.config = new ConfigManager(getDataFolder());
             this.config.load();
-            this.messageHandler = new MessageHandler(this.config);
+            this.messageUtils = new MessageUtils(this.config);
             this.permissionProvider = ProviderManager.initializeProvider(this);
             return true;
         } catch (Exception e) {
@@ -68,8 +68,8 @@ public final class Junction extends JavaPlugin {
         return config;
     }
 
-    public MessageHandler getMessageHandler() {
-        return messageHandler;
+    public MessageUtils getMessageUtils() {
+        return messageUtils;
     }
 
     public PermissionProvider getPermissionProvider() {
