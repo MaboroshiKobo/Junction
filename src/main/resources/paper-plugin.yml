@@ -6,6 +6,7 @@ description: Automate permissions and execute edition-specific commands for Java
 author: Maboroshi
 website: https://github.com/MaboroshiKobo/Junction
 api-version: "1.21"
+folia-supported: true
 dependencies:
   server:
     floodgate:
