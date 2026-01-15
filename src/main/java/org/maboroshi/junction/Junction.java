@@ -19,10 +19,12 @@ public final class Junction extends JavaPlugin {
     private PermissionProvider permissionProvider;
     private Logger log;
     private MessageUtils messageUtils;
+    private static boolean isFolia;
 
     @Override
     public void onEnable() {
         plugin = this;
+        isFolia = checkFolia();
         this.log = new Logger(this);
         UpdateChecker updateChecker = new UpdateChecker(this);
         updateChecker.checkForUpdates();
@@ -54,6 +56,19 @@ public final class Junction extends JavaPlugin {
             log.error("Failed to load configuration: " + e.getMessage());
             return false;
         }
+    }
+
+    private static boolean checkFolia() {
+        try {
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
+    public static boolean isFolia() {
+        return isFolia;
     }
 
     public static Junction getPlugin() {

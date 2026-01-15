@@ -4,6 +4,7 @@ import java.util.List;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.maboroshi.junction.Junction;
 
 public class CommandUtils {
     public static void dispatch(Player player, List<String> commands) {
@@ -16,7 +17,14 @@ public class CommandUtils {
                     .replace("{player}", player.getName())
                     .replace("{uuid}", player.getUniqueId().toString());
             if (parsedCommand.startsWith("/")) parsedCommand = parsedCommand.substring(1);
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), parsedCommand);
+            final String finalCommand = parsedCommand;
+            if (Junction.isFolia()) {
+                Bukkit.getGlobalRegionScheduler().execute(Junction.getPlugin(), () -> {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCommand);
+                });
+            } else {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), parsedCommand);
+            }
         }
     }
 }
