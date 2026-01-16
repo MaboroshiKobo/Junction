@@ -26,13 +26,13 @@ public final class Junction extends JavaPlugin {
         plugin = this;
         isFolia = checkFolia();
         this.log = new Logger(this);
-        UpdateChecker updateChecker = new UpdateChecker(this);
-        updateChecker.checkForUpdates();
         if (!reload()) {
             log.error("Disabling plugin due to critical configuration error.");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        UpdateChecker updateChecker = new UpdateChecker(this);
+        updateChecker.checkForUpdates();
         @SuppressWarnings("unused")
         Metrics metrics = new Metrics(this, 28238);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);

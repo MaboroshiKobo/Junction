@@ -32,9 +32,7 @@ public class JunctionCommand {
                             "<prefix>Plugin version: <green><version></green>",
                             messageUtils.tag("version", plugin.getPluginMeta().getVersion()));
 
-                    messageUtils.send(
-                            sender,
-                            "<green>🛈</green> <gray>Type <white>/junction reload</white> to reload the configuration.</gray>");
+                    messageUtils.send(sender, config.getMessageConfig().messages.helpInfo);
                     return Command.SINGLE_SUCCESS;
                 })
                 .then(Commands.literal("reload")
@@ -43,11 +41,10 @@ public class JunctionCommand {
                             CommandSender sender = ctx.getSource().getSender();
                             if (plugin.reload()) {
                                 log.info("Configuration reloaded by " + sender.getName());
-                                messageUtils.send(
-                                        sender, "<prefix>" + config.getMessageConfig().messages.reloadSuccess);
+                                messageUtils.send(sender, config.getMessageConfig().messages.reloadSuccess);
                             } else {
                                 log.warn("Failed to reload configuration by " + sender.getName());
-                                messageUtils.send(sender, "<prefix>" + config.getMessageConfig().messages.reloadFail);
+                                messageUtils.send(sender, config.getMessageConfig().messages.reloadFail);
                             }
                             return Command.SINGLE_SUCCESS;
                         }))
