@@ -31,18 +31,15 @@ public final class Junction extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        UpdateChecker updateChecker = new UpdateChecker(this);
-        updateChecker.checkForUpdates();
         @SuppressWarnings("unused")
         Metrics metrics = new Metrics(this, 28238);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
-        getServer().getPluginManager().registerEvents(updateChecker, this);
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, event -> {
             JunctionCommand junctionCommand = new JunctionCommand(this);
             event.registrar().register(junctionCommand.createCommand("junction"), "Main Junction command");
         });
-        log.info("Plugin enabled successfully");
+        new UpdateChecker(this).checkForUpdates();
     }
 
     public boolean reload() {
