@@ -12,12 +12,12 @@
 Junction handles cross-platform management with a focus on these core functions:
 
 * It provides automated group assignment using [LuckPerms](https://luckperms.net/), [Vault](https://www.spigotmc.org/resources/vault.34315/), or [VaultUnlocked](https://modrinth.com/plugin/vaultunlocked) to put Bedrock players into specific permission groups upon join.
-* You can configure edition-specific console commands that run separate logic for Java and Bedrock players during join and quit events.
-* It includes extensive variable support using internal placeholders like `{player}` and `{uuid}`, with optional **PlaceholderAPI** support.
+* You can configure edition-specific console commands that run separate logic for Java and Bedrock players during join and quit events with configurable delay per command.
+* It includes extensive variable support using internal placeholders like `<player>` and `<uuid>`, with optional **PlaceholderAPI** support.
 
 ### Prerequisites
 
-To use this plugin, your server must be running **Paper**, **Purpur**, or **Folia** on `1.21` or higher. It requires **Java 21** and the [Floodgate](https://geysermc.org/wiki/floodgate) plugin to properly detect player editions.
+To use this plugin, your server must be running **Paper** or **Folia** on `1.21` or higher. It also requires the [Floodgate](https://geysermc.org/wiki/floodgate) plugin to properly detect player editions.
 
 ### Documentation & Support
 
