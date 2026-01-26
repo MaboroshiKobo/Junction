@@ -1,6 +1,8 @@
 package org.maboroshi.junction.permission;
 
-import net.milkbowl.vault2.permission.Permission;
+import net.milkbowl.vault.permission.Permission;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.maboroshi.junction.Junction;
@@ -13,58 +15,33 @@ public class VaultProvider implements PermissionProvider {
         this.permission = permission;
     }
 
-    public static VaultProvider setupProvider(Junction plugin, String groupName) {
-        Logger log = plugin.getPluginLogger();
+    public static VaultProvider setupProvider() {
+        Logger log = Junction.getPlugin().getPluginLogger();
 
-        if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
+        if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
             log.warn("Vault plugin not found!");
             return null;
         }
 
         RegisteredServiceProvider<Permission> provider =
-                plugin.getServer().getServicesManager().getRegistration(Permission.class);
+                Bukkit.getServicesManager().getRegistration(Permission.class);
+
         if (provider == null) {
-            log.warn("Vault registration failed!");
+            log.warn("Vault permission service not found!");
             return null;
         }
 
-        Permission vault = provider.getProvider();
-
-        if (groupName != null && !groupName.isEmpty()) {
-            String[] groups = vault.getGroups();
-            boolean groupExists = false;
-            for (String group : groups) {
-                if (group.equalsIgnoreCase(groupName)) {
-                    groupExists = true;
-                    break;
-                }
-            }
-            if (!groupExists) {
-                log.warn("Group '" + groupName + "' not found in " + vault.getName());
-                log.warn("Available groups: " + String.join(", ", groups));
-            } else {
-                log.debug("Found group '" + groupName + "' in " + vault.getName());
-            }
-        }
-
-        return new VaultProvider(vault);
+        return new VaultProvider(provider.getProvider());
     }
 
     @Override
     public boolean addPlayerToGroup(Player player, String group) {
-        if (isPlayerInGroup(player, group)) return true;
-        return permission.playerAddGroup(null, player, group);
-    }
-
-    @Override
-    public boolean isPlayerInGroup(Player player, String group) {
-        return permission.playerInGroup(null, player, group);
+        return permission.playerAddGroup(null, (OfflinePlayer) player, group);
     }
 
     @Override
     public boolean removePlayerFromGroup(Player player, String group) {
-        if (!isPlayerInGroup(player, group)) return true;
-        return permission.playerRemoveGroup(null, player, group);
+        return permission.playerRemoveGroup(null, (OfflinePlayer) player, group);
     }
 
     @Override
