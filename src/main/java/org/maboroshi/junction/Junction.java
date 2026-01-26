@@ -25,6 +25,7 @@ public final class Junction extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         isFolia = checkFolia();
+        this.config = new ConfigManager(getDataFolder());
         this.log = new Logger(this);
         if (!reload()) {
             log.error("Disabling plugin due to critical configuration error.");
@@ -44,7 +45,6 @@ public final class Junction extends JavaPlugin {
 
     public boolean reload() {
         try {
-            this.config = new ConfigManager(getDataFolder());
             this.config.load();
             this.messageUtils = new MessageUtils(this.config);
             this.permissionProvider = ProviderManager.initializeProvider(this);
