@@ -14,13 +14,16 @@ repositories {
         url = "https://repo.papermc.io/repository/maven-public/"
     }
     maven {
-        url = uri("https://repo.opencollab.dev/main/")
+        url = "https://repo.opencollab.dev/main/"
     }
     maven {
-        url = uri("https://repo.codemc.io/repository/creatorfromhell/")
+        url = "https://repo.codemc.io/repository/creatorfromhell/"
     }
     maven {
-        url = 'https://repo.extendedclip.com/releases/'
+        url = "https://repo.extendedclip.com/releases/"
+    }
+    maven {
+        url = "https://jitpack.io/"
     }
 }
 
@@ -30,6 +33,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.1.0")
     compileOnly("org.geysermc.floodgate:api:2.2.5-SNAPSHOT")
     compileOnly("net.milkbowl.vault:VaultUnlockedAPI:2.19")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
     compileOnly("net.luckperms:api:5.5")
     compileOnly("me.clip:placeholderapi:2.11.7")
 }
