@@ -33,17 +33,11 @@ public class PlayerJoinListener implements Listener {
         if (permissionProvider != null) {
             String groupName = config.getMainConfig().permissions.group;
             if (isBedrock) {
-                if (!permissionProvider.isPlayerInGroup(player, groupName)) {
-                    log.debug("Attempting to add " + player.getName() + " to group: " + groupName);
-                    boolean success = permissionProvider.addPlayerToGroup(player, groupName);
-                    if (success) log.info("Added Bedrock player " + player.getName() + " to group '" + groupName + "'");
-                    else log.warn("Failed to add " + player.getName() + " to group '" + groupName + "'");
-                }
+                permissionProvider.addPlayerToGroup(player, groupName);
+                log.debug("Ensured Bedrock player " + player.getName() + " is in group: " + groupName);
             } else {
-                if (permissionProvider.isPlayerInGroup(player, groupName)) {
-                    permissionProvider.removePlayerFromGroup(player, groupName);
-                    log.debug("Removed leftover group '" + groupName + "' from Java player " + player.getName());
-                }
+                permissionProvider.removePlayerFromGroup(player, groupName);
+                log.debug("Ensured Java player " + player.getName() + " is not in group: " + groupName);
             }
         }
         if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, messageUtils);
