@@ -1,5 +1,5 @@
 name: Junction
-version: "1.4.0"
+version: "1.5.0"
 main: org.maboroshi.junction.Junction
 loader: org.maboroshi.junction.Loader
 description: Automate permissions and execute edition-specific commands for Java and Bedrock players using Floodgate.
