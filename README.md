@@ -1,10 +1,8 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/MaboroshiKobo/branding/cfb12f9b3f5816bd7eb8656ebd5115bfec7a381f/projects/junction/junction.avif" width="180" alt="Junction Logo">
-  <h3>Junction</h3>
+  <h1>Junction</h1>
   <p>The modern Geyser & Floodgate management solution for Paper servers</p>
 </div>
-
-***
 
 **Junction** is a high-performance **Floodgate addon** for **Paper** servers designed to automate **Bedrock Edition** player management. By detecting whether a player is using **Java or Bedrock**, Junction allows administrators to execute platform-specific commands and automate **LuckPerms** or **Vault** group assignments seamlessly.
 
