@@ -1,11 +1,11 @@
 name: Junction
-version: "1.6.1"
+version: "${version}"
 main: org.maboroshi.junction.Junction
 loader: org.maboroshi.junction.Loader
 description: Automate permissions and execute edition-specific commands for Java and Bedrock players using Floodgate.
 author: Maboroshi
 website: https://github.com/MaboroshiKobo/Junction
-api-version: "1.21"
+api-version: "26.1"
 folia-supported: true
 dependencies:
   server:

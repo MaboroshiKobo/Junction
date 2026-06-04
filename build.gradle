@@ -5,7 +5,26 @@ plugins {
 }
 
 group = 'org.maboroshi'
-version = '1.6.1'
+def baseVersion = '1.7.0'
+
+def getGitHash = { ->
+    if (System.getenv("GITHUB_SHA") != null) {
+        return System.getenv("GITHUB_SHA").take(6)
+    }
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-parse', '--short=6'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    } catch (Exception ignored) {
+        return "beta"
+    }
+}
+
+version = project.hasProperty('release') && project.property('release') == 'true' ?
+          baseVersion : "${baseVersion}-${getGitHash()}"
 
 repositories {
     mavenCentral()
@@ -46,6 +65,7 @@ tasks.named('shadowJar') {
 }
 
 build.dependsOn shadowJar
+build.dependsOn spotlessApply
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(25)
@@ -73,11 +93,11 @@ spotless {
   }
 
   java {
-    target 'src/*/java/**/*.java'
-    palantirJavaFormat('2.83.0')
-    formatAnnotations()
     importOrder()
     removeUnusedImports()
+    forbidWildcardImports()
     cleanthat()
+    palantirJavaFormat('2.91.0')
+    formatAnnotations()
   }
 }
