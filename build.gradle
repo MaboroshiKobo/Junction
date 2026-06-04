@@ -57,6 +57,13 @@ dependencies {
     compileOnly("me.clip:placeholderapi:2.12.2")
 }
 
+tasks.register("printVersion") {
+    group = "versioning"
+    doLast {
+        println("VERSION=${version}")
+    }
+}
+
 tasks.named('shadowJar') {
   relocate 'org.bstats', 'org.maboroshi.junction.libs.bstats'
   exclude 'plugin.yml'
