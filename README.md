@@ -19,17 +19,21 @@
   </p>
 </div>
 
-### Features
+# The best way to manage your Bedrock players on a Java server
+
+Junction is a modern, utility plugin that allows you to easily manage your Bedrock players on a Java server. It provides a simple and flexible way to automatically sort your Bedrock players into specific permission groups as they join the server, and run separate console commands depending on the platform.
+
+## Features
 
 * Automatically sort your Bedrock players into specific permission groups as they join the server.
 * Run separate console commands depending on the platform. You can trigger completely different logic for Java and Bedrock players during join and quit events.
 * Keep your setup clean with built-in variables like `{player}` and `{uuid}`, plus full PlaceholderAPI support if you need to pull in extra data from your other plugins.
 
-### Prerequisites
+## Prerequisites
 
-This plugin is designed and officially tested for **Paper** `26.1`+ using **Java 25**. While it might technically run on slightly older Minecraft or Java versions, those aren't officially supported; so if something breaks, you're on your own!
+This plugin is designed and officially tested for **Paper** `26.2`+ using **Java 25**. While it might technically run on slightly older Minecraft or Java versions, those aren't officially supported; so if something breaks, you're on your own!
 
-#### Compatibility
+### Compatibility
 
 Junction supports integration with the following plugins to enhance functionality:
 
@@ -37,11 +41,11 @@ Junction supports integration with the following plugins to enhance functionalit
 * [LuckPerms](https://luckperms.net/) / [Vault](https://www.spigotmc.org/resources/vault.34315/) / [VaultUnlocked](https://modrinth.com/plugin/vaultunlocked) (At least one is required)
 * [PlaceholderAPI](https://placeholderapi.com/) (Optional)
 
-### Documentation & Support
+## Documentation & Support
 
 For a complete guide on features, commands, and configuration, please visit our [wiki](https://docs.maboroshi.org/projects/junction). If you have questions or need to report a bug, join our [Discord server](https://discord.maboroshi.org) or open an issue on [GitHub](https://github.com/MaboroshiKobo/Junction/issues).
 
-### Statistics
+## Statistics
 
 This plugin utilizes [bStats](https://bstats.org/plugin/bukkit/Junction/28238) to collect anonymous usage metrics.
 
