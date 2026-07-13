@@ -1,8 +1,6 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/MaboroshiKobo/branding/cfb12f9b3f5816bd7eb8656ebd5115bfec7a381f/projects/junction/junction.avif" width="180" alt="Junction Logo">
-  <h1>Junction</h1>
-  <p>Bridge the gap between Java and Bedrock crossplay. Automate permissions and execute edition-specific commands seamlessly via Geyser and Floodgate.</p>
+[![Junction Banner](https://raw.githubusercontent.com/MaboroshiKobo/branding/refs/heads/main/projects/junction/banners/junction_2048.png)](https://docs.maboroshi.org/projects/junction)
 
+<div align="center">
   <p>
     <img alt="paper" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/paper_vector.svg">
     <img alt="purpur" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/purpur_vector.svg">
@@ -16,8 +14,8 @@
   </p>
 
   <p>
-    <a href="https://docs.maboroshi.org"><img alt="generic" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/documentation/generic_vector.svg"></a>
-    <a href="https://discord.maboroshi.org"><img alt="discord-singular" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-singular_vector.svg"></a>
+    <a href="https://docs.maboroshi.org/projects/junction"><img alt="generic" height="56" src="https://raw.githubusercontent.com/MaboroshiKobo/branding/refs/heads/main/socials/128x/domain_icon_bg.png"></a>
+    <a href="https://discord.maboroshi.org"><img alt="discord-singular" height="56" src="https://raw.githubusercontent.com/MaboroshiKobo/branding/refs/heads/main/socials/128x/discord_icon_bg.png"></a>
   </p>
 </div>
 
@@ -41,7 +39,7 @@ Junction supports integration with the following plugins to enhance functionalit
 
 ### Documentation & Support
 
-For a complete guide on features, commands, and configuration, please visit our [wiki](https://docs.maboroshi.org). If you have questions or need to report a bug, join our [Discord server](https://discord.maboroshi.org) or open an issue on [GitHub](https://github.com/MaboroshiKobo/Junction/issues).
+For a complete guide on features, commands, and configuration, please visit our [wiki](https://docs.maboroshi.org/projects/junction). If you have questions or need to report a bug, join our [Discord server](https://discord.maboroshi.org) or open an issue on [GitHub](https://github.com/MaboroshiKobo/Junction/issues).
 
 ### Statistics
 
