@@ -19,23 +19,18 @@
   </p>
 </div>
 
-# The best way to manage your Bedrock players on a Java server
+## Platform-specific group routing and command execution
 
-Junction is a modern, utility plugin that allows you to easily manage your Bedrock players on a Java server. It provides a simple and flexible way to automatically sort your Bedrock players into specific permission groups as they join the server, and run separate console commands depending on the platform.
+Junction is a lightweight utility plugin that automates player management for servers that are running Geyser and Floodgate. It automatically sorts Bedrock players into configured permission groups on join and runs platform-specific console commands during join and quit events.
 
 ## Features
 
-* Automatically sort your Bedrock players into specific permission groups as they join the server.
-* Run separate console commands depending on the platform. You can trigger completely different logic for Java and Bedrock players during join and quit events.
-* Keep your setup clean with built-in variables like `{player}` and `{uuid}`, plus full PlaceholderAPI support if you need to pull in extra data from your other plugins.
+* Automatically assign Bedrock players to specific permission groups upon joining.
+* Execute console commands separately for Java and Bedrock players during join and quit events.
 
 ## Prerequisites
 
-This plugin is designed and officially tested for **Paper** `26.2`+ using **Java 25**. While it might technically run on slightly older Minecraft or Java versions, those aren't officially supported; so if something breaks, you're on your own!
-
-### Compatibility
-
-Junction supports integration with the following plugins to enhance functionality:
+Junction is compatible with the following plugins:
 
 * [Floodgate](https://geysermc.org/wiki/floodgate) (Required)
 * [LuckPerms](https://luckperms.net/) / [Vault](https://www.spigotmc.org/resources/vault.34315/) / [VaultUnlocked](https://modrinth.com/plugin/vaultunlocked) (At least one is required)
@@ -43,7 +38,7 @@ Junction supports integration with the following plugins to enhance functionalit
 
 ## Documentation & Support
 
-For a complete guide on features, commands, and configuration, please visit our [wiki](https://docs.maboroshi.org/projects/junction). If you have questions or need to report a bug, join our [Discord server](https://discord.maboroshi.org) or open an issue on [GitHub](https://github.com/MaboroshiKobo/Junction/issues).
+For configurations, commands, and permissions, check out our [wiki](https://docs.maboroshi.org/projects/junction). For bugs, questions, or updates, visit our [Discord server](https://discord.maboroshi.org) or open a [GitHub Issue](https://github.com/MaboroshiKobo/Junction/issues).
 
 ## Statistics
 
@@ -53,7 +48,7 @@ This plugin utilizes [bStats](https://bstats.org/plugin/bukkit/Junction/28238) t
 
 ## Building
 
-If you wish to build the project from source, ensure you have a Java 25 environment configured.
+To build the project from source, ensure you have a Java 25 environment configured.
 
 ```bash
 ./gradlew build
