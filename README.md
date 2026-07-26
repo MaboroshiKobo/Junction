@@ -14,8 +14,8 @@
   </p>
 
   <p>
-    <a href="https://docs.maboroshi.org/projects/junction"><img alt="generic" height="56" src="https://raw.githubusercontent.com/MaboroshiKobo/branding/refs/heads/main/socials/128x/domain_icon_bg.png"></a>
-    <a href="https://discord.maboroshi.org"><img alt="discord-singular" height="56" src="https://raw.githubusercontent.com/MaboroshiKobo/branding/refs/heads/main/socials/128x/discord_icon_bg.png"></a>
+    <a href="https://docs.maboroshi.org/projects/junction"><img alt="documentation" height="56" src="https://raw.githubusercontent.com/MaboroshiKobo/branding/refs/heads/main/socials/128x/domain_icon_bg.png"></a>
+    <a href="https://discord.maboroshi.org"><img alt="discord" height="56" src="https://raw.githubusercontent.com/MaboroshiKobo/branding/refs/heads/main/socials/128x/discord_icon_bg.png"></a>
   </p>
 </div>
 
