@@ -24,6 +24,9 @@ public final class Junction extends JavaPlugin {
         plugin = this;
         isFolia = checkFolia();
         this.config = new ConfigManager(getDataFolder());
+        Log.init(
+                getComponentLogger(),
+                () -> config != null && config.getMainConfig() != null && config.getMainConfig().debug);
         if (!reload()) {
             Log.error("Disabling plugin due to critical configuration error.");
             getServer().getPluginManager().disablePlugin(this);
