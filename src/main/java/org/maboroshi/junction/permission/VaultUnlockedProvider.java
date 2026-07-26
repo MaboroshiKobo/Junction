@@ -5,8 +5,7 @@ import net.milkbowl.vault2.permission.PermissionUnlocked;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
-import org.maboroshi.junction.Junction;
-import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.Log;
 
 public class VaultUnlockedProvider implements PermissionProvider {
     private final PermissionUnlocked permission;
@@ -16,10 +15,8 @@ public class VaultUnlockedProvider implements PermissionProvider {
     }
 
     public static VaultUnlockedProvider setupProvider() {
-        Logger log = Junction.getPlugin().getPluginLogger();
-
         if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
-            log.warn("Vault plugin not found!");
+            Log.warn("Vault plugin not found!");
             return null;
         }
 
@@ -27,7 +24,7 @@ public class VaultUnlockedProvider implements PermissionProvider {
                 Bukkit.getServicesManager().getRegistration(PermissionUnlocked.class);
 
         if (provider == null) {
-            log.warn("Vault registration failed!");
+            Log.warn("Vault registration failed!");
             return null;
         }
 

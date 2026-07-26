@@ -9,15 +9,13 @@ import org.maboroshi.junction.listener.PlayerJoinListener;
 import org.maboroshi.junction.listener.PlayerQuitListener;
 import org.maboroshi.junction.permission.PermissionProvider;
 import org.maboroshi.junction.permission.ProviderManager;
-import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.Log;
 import org.maboroshi.junction.util.MessageUtils;
-import org.maboroshi.junction.util.UpdateChecker;
 
 public final class Junction extends JavaPlugin {
     private static Junction plugin;
     private ConfigManager config;
     private PermissionProvider permissionProvider;
-    private Logger log;
     private MessageUtils messageUtils;
     private static boolean isFolia;
 
@@ -26,9 +24,8 @@ public final class Junction extends JavaPlugin {
         plugin = this;
         isFolia = checkFolia();
         this.config = new ConfigManager(getDataFolder());
-        this.log = new Logger(this);
         if (!reload()) {
-            log.error("Disabling plugin due to critical configuration error.");
+            Log.error("Disabling plugin due to critical configuration error.");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -40,7 +37,6 @@ public final class Junction extends JavaPlugin {
             JunctionCommand junctionCommand = new JunctionCommand(this);
             event.registrar().register(junctionCommand.createCommand("junction"), "Main Junction command");
         });
-        new UpdateChecker(this).checkForUpdates();
     }
 
     public boolean reload() {
@@ -50,7 +46,7 @@ public final class Junction extends JavaPlugin {
             this.permissionProvider = ProviderManager.initializeProvider(this);
             return true;
         } catch (Exception e) {
-            log.error("Failed to load configuration: " + e.getMessage());
+            Log.error("Failed to load configuration: " + e.getMessage());
             return false;
         }
     }
@@ -70,10 +66,6 @@ public final class Junction extends JavaPlugin {
 
     public static Junction getPlugin() {
         return plugin;
-    }
-
-    public Logger getPluginLogger() {
-        return log;
     }
 
     public ConfigManager getConfiguration() {

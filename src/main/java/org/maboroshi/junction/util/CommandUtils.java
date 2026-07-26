@@ -25,7 +25,8 @@ public class CommandUtils {
                                 Junction.getPlugin(),
                                 (task) -> {
                                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commandToRun);
-                                    debug(commandToRun, delayTicks);
+                                    Log.debug(
+                                            "Executed command: " + commandToRun + " (Total delay: " + delayTicks + ")");
                                 },
                                 delayTicks);
             } else {
@@ -34,15 +35,12 @@ public class CommandUtils {
                                 Junction.getPlugin(),
                                 () -> {
                                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commandToRun);
-                                    debug(commandToRun, delayTicks);
+                                    Log.debug(
+                                            "Executed command: " + commandToRun + " (Total delay: " + delayTicks + ")");
                                 },
                                 delayTicks);
             }
             totalDelay += entry.delay;
         }
-    }
-
-    private static void debug(String cmd, long delay) {
-        Junction.getPlugin().getPluginLogger().debug("Executed command: " + cmd + " (Total delay: " + delay + ")");
     }
 }

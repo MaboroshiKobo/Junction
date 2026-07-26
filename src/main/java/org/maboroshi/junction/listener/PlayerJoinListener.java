@@ -11,7 +11,7 @@ import org.maboroshi.junction.config.ConfigManager;
 import org.maboroshi.junction.config.settings.MainConfig.CommandEntry;
 import org.maboroshi.junction.permission.PermissionProvider;
 import org.maboroshi.junction.util.CommandUtils;
-import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.Log;
 import org.maboroshi.junction.util.MessageUtils;
 
 public class PlayerJoinListener implements Listener {
@@ -23,21 +23,20 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        Logger log = plugin.getPluginLogger();
         ConfigManager config = plugin.getConfiguration();
         MessageUtils messageUtils = plugin.getMessageUtils();
         Player player = event.getPlayer();
         PermissionProvider permissionProvider = plugin.getPermissionProvider();
         boolean isBedrock = FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId());
-        log.debug("Player join event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
+        Log.debug("Player join event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
         if (permissionProvider != null) {
             String groupName = config.getMainConfig().permissions.group;
             if (isBedrock) {
                 permissionProvider.addPlayerToGroup(player, groupName);
-                log.debug("Ensured Bedrock player " + player.getName() + " is in group: " + groupName);
+                Log.debug("Ensured Bedrock player " + player.getName() + " is in group: " + groupName);
             } else {
                 permissionProvider.removePlayerFromGroup(player, groupName);
-                log.debug("Ensured Java player " + player.getName() + " is not in group: " + groupName);
+                Log.debug("Ensured Java player " + player.getName() + " is not in group: " + groupName);
             }
         }
         if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, messageUtils);

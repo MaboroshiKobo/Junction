@@ -10,7 +10,7 @@ import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.config.ConfigManager;
 import org.maboroshi.junction.config.settings.MainConfig.CommandEntry;
 import org.maboroshi.junction.util.CommandUtils;
-import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.Log;
 import org.maboroshi.junction.util.MessageUtils;
 
 public class PlayerQuitListener implements Listener {
@@ -22,12 +22,11 @@ public class PlayerQuitListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        Logger log = plugin.getPluginLogger();
         ConfigManager config = plugin.getConfiguration();
         MessageUtils messageUtils = plugin.getMessageUtils();
         Player player = event.getPlayer();
         boolean isBedrock = FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId());
-        log.debug("Player quit event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
+        Log.debug("Player quit event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
         if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, messageUtils);
     }
 

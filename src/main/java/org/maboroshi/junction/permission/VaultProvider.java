@@ -5,8 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
-import org.maboroshi.junction.Junction;
-import org.maboroshi.junction.util.Logger;
+import org.maboroshi.junction.util.Log;
 
 public class VaultProvider implements PermissionProvider {
     private final Permission permission;
@@ -16,10 +15,8 @@ public class VaultProvider implements PermissionProvider {
     }
 
     public static VaultProvider setupProvider() {
-        Logger log = Junction.getPlugin().getPluginLogger();
-
         if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
-            log.warn("Vault plugin not found!");
+            Log.warn("Vault plugin not found!");
             return null;
         }
 
@@ -27,7 +24,7 @@ public class VaultProvider implements PermissionProvider {
                 Bukkit.getServicesManager().getRegistration(Permission.class);
 
         if (provider == null) {
-            log.warn("Vault permission service not found!");
+            Log.warn("Vault permission service not found!");
             return null;
         }
 
