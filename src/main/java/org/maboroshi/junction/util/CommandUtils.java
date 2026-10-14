@@ -19,26 +19,15 @@ public class CommandUtils {
             if (finalCommand.startsWith("/")) finalCommand = finalCommand.substring(1);
             final String commandToRun = finalCommand;
             final long delayTicks = totalDelay + entry.delay;
-            if (Junction.isFolia()) {
-                Bukkit.getGlobalRegionScheduler()
-                        .runDelayed(
-                                Junction.getPlugin(),
-                                (task) -> {
-                                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commandToRun);
-                                    Log.debug(
-                                            "Executed command: " + commandToRun + " (Total delay: " + delayTicks + ")");
-                                },
-                                delayTicks);
+            Runnable task = () -> {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commandToRun);
+                Log.debug("Executed command: " + commandToRun + " (Total delay: " + delayTicks + ")");
+            };
+            if (delayTicks <= 0) {
+                Bukkit.getGlobalRegionScheduler().run(Junction.getPlugin(), scheduledTask -> task.run());
             } else {
-                Bukkit.getScheduler()
-                        .runTaskLater(
-                                Junction.getPlugin(),
-                                () -> {
-                                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commandToRun);
-                                    Log.debug(
-                                            "Executed command: " + commandToRun + " (Total delay: " + delayTicks + ")");
-                                },
-                                delayTicks);
+                Bukkit.getGlobalRegionScheduler()
+                        .runDelayed(Junction.getPlugin(), scheduledTask -> task.run(), delayTicks);
             }
             totalDelay += entry.delay;
         }

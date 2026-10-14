@@ -27,22 +27,11 @@ version = project.hasProperty('release') && project.property('release') == 'true
 
 repositories {
     mavenCentral()
-    maven {
-        name = "papermc-repo"
-        url = "https://repo.papermc.io/repository/maven-public/"
-    }
-    maven {
-        url = "https://repo.opencollab.dev/main/"
-    }
-    maven {
-        url = "https://repo.codemc.io/repository/creatorfromhell/"
-    }
-    maven {
-        url = "https://repo.extendedclip.com/releases/"
-    }
-    maven {
-        url = "https://jitpack.io/"
-    }
+    maven { url = "https://repo.papermc.io/repository/maven-public/" }
+    maven { url = "https://repo.opencollab.dev/main/" }
+    maven { url = "https://repo.codemc.io/repository/creatorfromhell/" }
+    maven { url = "https://repo.extendedclip.com/releases/" }
+    maven { url = "https://jitpack.io/" }
 }
 
 dependencies {
