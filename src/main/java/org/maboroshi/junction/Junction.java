@@ -30,6 +30,15 @@ public final class Junction extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        boolean hasFloodgate = getServer().getPluginManager().isPluginEnabled("floodgate");
+        boolean hasGeyser = getServer().getPluginManager().isPluginEnabled("Geyser-Spigot");
+        if (hasFloodgate) {
+            Log.info("Hooked into Floodgate for Bedrock player detection.");
+        } else if (hasGeyser) {
+            Log.info("Hooked into Geyser-Spigot for Bedrock player detection.");
+        } else {
+            Log.info("Floodgate/Geyser-Spigot not found. Falling back to UUID-based detection.");
+        }
         @SuppressWarnings("unused")
         Metrics metrics = new Metrics(this, 28238);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
