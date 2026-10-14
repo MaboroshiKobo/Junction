@@ -21,20 +21,21 @@
 
 ## Platform-specific group routing and command execution
 
-Junction is a lightweight utility plugin that automates player management for servers that are running Geyser and Floodgate. It automatically sorts Bedrock players into configured permission groups on join and runs platform-specific console commands during join and quit events.
+Junction is a lightweight utility plugin that automates player management for servers running Geyser and Floodgate. It automatically sorts Bedrock players into configured permission groups on join and runs platform-specific console commands during join and quit events.
 
 ## Features
 
-* Automatically assign Bedrock players to specific permission groups upon joining.
-* Execute console commands separately for Java and Bedrock players during join and quit events.
+- Flexible Bedrock detection supporting Floodgate, Geyser-Spigot, or zero-prefixed UUIDs.
+- Automatically assign Bedrock players to specific permission groups upon joining.
+- Execute console commands separately for Java and Bedrock players during join and quit events.
 
 ## Prerequisites
 
 Junction is compatible with the following plugins:
 
-* [Floodgate](https://geysermc.org/wiki/floodgate) (Required)
-* [LuckPerms](https://luckperms.net/) / [Vault](https://www.spigotmc.org/resources/vault.34315/) / [VaultUnlocked](https://modrinth.com/plugin/vaultunlocked) (At least one is required)
-* [PlaceholderAPI](https://placeholderapi.com/) (Optional)
+- [Floodgate](https://geysermc.org/wiki/floodgate) / [Geyser-Spigot](https://geysermc.org/) (Optional; falls back to UUID if they aren't installed on backend servers)
+- [LuckPerms](https://luckperms.net/) / [Vault](https://www.spigotmc.org/resources/vault.34315/) / [VaultUnlocked](https://modrinth.com/plugin/vaultunlocked) (At least one is required)
+- [PlaceholderAPI](https://placeholderapi.com/) (Optional)
 
 ## Documentation & Support
 
