@@ -1,11 +1,10 @@
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '9.6.1'
-    id 'com.diffplug.spotless' version '8.10.3'
 }
 
 group = 'org.maboroshi'
-def baseVersion = '1.7.0'
+def baseVersion = '1.8.0'
 
 def getGitHash = { ->
     if (System.getenv("GITHUB_SHA") != null) {
@@ -47,9 +46,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:26.2.build.+")
+    compileOnly("io.papermc.paper:paper-api:26.3.build.+")
     compileOnly("de.exlll:configlib-paper:4.8.1")
     implementation("org.bstats:bstats-bukkit:3.2.1")
+    compileOnly("org.geysermc.geyser:api:2.11.3-SNAPSHOT")
     compileOnly("org.geysermc.floodgate:api:2.2.5-SNAPSHOT")
     compileOnly("net.milkbowl.vault:VaultUnlockedAPI:2.20")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
@@ -72,7 +72,6 @@ tasks.named('shadowJar') {
 }
 
 build.dependsOn shadowJar
-build.dependsOn spotlessApply
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(25)
@@ -90,22 +89,4 @@ processResources {
     filesMatching('paper-plugin.yml') {
         expand props
     }
-}
-
-spotless {
-  format 'misc', {
-    target '*.gradle', '.gitattributes', '.gitignore'
-    trimTrailingWhitespace()
-    leadingTabsToSpaces()
-    endWithNewline()
-  }
-
-  java {
-    importOrder()
-    removeUnusedImports()
-    forbidWildcardImports()
-    cleanthat()
-    palantirJavaFormat('2.96.0')
-    formatAnnotations()
-  }
 }

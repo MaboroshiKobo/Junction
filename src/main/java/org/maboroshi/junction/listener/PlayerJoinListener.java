@@ -5,11 +5,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.geysermc.floodgate.api.FloodgateApi;
 import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.config.ConfigManager;
 import org.maboroshi.junction.config.settings.MainConfig.CommandEntry;
 import org.maboroshi.junction.permission.PermissionProvider;
+import org.maboroshi.junction.util.BedrockUtils;
 import org.maboroshi.junction.util.CommandUtils;
 import org.maboroshi.junction.util.Log;
 import org.maboroshi.junction.util.MessageUtils;
@@ -27,7 +27,7 @@ public class PlayerJoinListener implements Listener {
         MessageUtils messageUtils = plugin.getMessageUtils();
         Player player = event.getPlayer();
         PermissionProvider permissionProvider = plugin.getPermissionProvider();
-        boolean isBedrock = FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId());
+        boolean isBedrock = BedrockUtils.isBedrock(player);
         Log.debug("Player join event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
         if (permissionProvider != null) {
             String groupName = config.getMainConfig().permissions.group;

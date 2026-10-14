@@ -5,10 +5,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.geysermc.floodgate.api.FloodgateApi;
 import org.maboroshi.junction.Junction;
 import org.maboroshi.junction.config.ConfigManager;
 import org.maboroshi.junction.config.settings.MainConfig.CommandEntry;
+import org.maboroshi.junction.util.BedrockUtils;
 import org.maboroshi.junction.util.CommandUtils;
 import org.maboroshi.junction.util.Log;
 import org.maboroshi.junction.util.MessageUtils;
@@ -25,7 +25,7 @@ public class PlayerQuitListener implements Listener {
         ConfigManager config = plugin.getConfiguration();
         MessageUtils messageUtils = plugin.getMessageUtils();
         Player player = event.getPlayer();
-        boolean isBedrock = FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId());
+        boolean isBedrock = BedrockUtils.isBedrock(player);
         Log.debug("Player quit event triggered: " + player.getName() + " (Bedrock: " + isBedrock + ")");
         if (config.getMainConfig().commands.enabled) handleCommands(player, isBedrock, config, messageUtils);
     }

@@ -14,6 +14,10 @@ dependencies:
   server:
     floodgate:
       load: BEFORE
+      required: false
+    Geyser-Spigot:
+      load: BEFORE
+      required: false
     LuckPerms:
       load: BEFORE
       required: false
