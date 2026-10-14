@@ -21,7 +21,7 @@ public final class MessageConfig {
     @Configuration
     public static class MessageSettings {
         @Comment("Prefix for all messages sent by the plugin.")
-        public String prefix = "<color:#00D4FF><bold>Junction</bold> ➟</color>";
+        public String prefix = "<#00D4FF>Junction ➟</#00D4FF>";
 
         @Comment("Message displayed when the plugin is reloaded.")
         public String reloadSuccess = "<prefix> <green>Plugin configuration has been reloaded successfully.</green>";

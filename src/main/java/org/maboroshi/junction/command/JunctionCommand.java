@@ -27,7 +27,7 @@ public class JunctionCommand {
 
                     messageUtils.send(
                             sender,
-                            "<prefix>Plugin version: <green><version></green>",
+                            "<prefix> Plugin version: <green><version></green>",
                             messageUtils.tag("version", plugin.getPluginMeta().getVersion()));
 
                     messageUtils.send(sender, config.getMessageConfig().messages.helpInfo);
