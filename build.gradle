@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.maboroshi'
-def baseVersion = '1.8.0'
+def baseVersion = '1.8.1'
 
 def getGitHash = { ->
     if (System.getenv("GITHUB_SHA") != null) {
